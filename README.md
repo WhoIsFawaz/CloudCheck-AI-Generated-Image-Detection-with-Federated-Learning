@@ -1,4 +1,6 @@
-# CloudCheck
+https://whoisfawaz.hashnode.dev/cloudcheck-award-winning-cloud-native-solution-for-ai-generated-image-detection-with-federated-learning
+
+# CloudCheck AI-Generated Image Detection with Federated Learning
 
 By TAY JEUNG HONG (2301036), LIM LIANG FAN (2300937), MOHAMED FAIZAL MOHAMED FAWAZ (2300938), GOH JIA RUI GARY (2300954), NG JIA WEI (2301008), SURESH KUMAR BALAVIGNESH (2301110)
 
