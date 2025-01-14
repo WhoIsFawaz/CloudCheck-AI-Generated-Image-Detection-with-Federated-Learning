@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aws-s3-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aws-s3
+  template:
+    metadata:
+      labels:
+        app: aws-s3
+    spec:
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
+      containers:
+        - name: aws-s3
+          image: bloomingteratoma/aws-s3:latest
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: deployment-configmap
+            - secretRef:
+                name: deployment-secret
+          # resources:      
+          #   limits:
+          #     memory: "1Gi"
+          #     cpu: "0.5" 
+          ports:
+            - containerPort: 5002
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: aws-s3-service
+spec:
+  selector:
+    app: aws-s3
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002

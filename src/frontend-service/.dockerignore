@@ -1,0 +1,15 @@
+# Misc
+node_modules
+.DS_Store
+*.pem
+README.md
+.git
+.gitignore
+.eslintrc*
+.prettier*
+.editorconfig
+.idea
+.vscode
+*.swp
+*.swo
+.env.example

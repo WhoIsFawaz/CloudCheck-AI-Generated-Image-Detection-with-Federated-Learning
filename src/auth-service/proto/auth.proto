@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package auth;
+
+service UsersService {
+    rpc CreateUser (CreateUserDto) returns (ProtoUser) {}
+    rpc FindAllUsers (Empty) returns (Users) {}
+    rpc FindOneUser (FindOneUserDto) returns (ProtoUser) {}
+    rpc UpdateUser (UpdateUserDto) returns (ProtoUser) {}
+    rpc RemoveUser (FindOneUserDto) returns (ProtoUser) {}
+    rpc Login (LoginRequest) returns (LoginResponse) {}
+}
+
+message UpdateUserDto {
+    int32 UserID = 1;
+    optional string Name = 2;
+    optional string Password = 3;
+    optional string Email = 4;
+}
+
+message FindOneUserDto {
+    int32 UserID = 1;
+}
+
+message Empty {
+
+};
+
+message LoginRequest {
+    string Username = 1;    
+    string Password = 2; 
+}
+
+message LoginResponse {
+    bool Validated =  1;
+    string AccessToken = 2;
+    int32 UserID = 3;    
+}
+
+message Users {
+    repeated ProtoUser users = 1;
+}
+
+message CreateUserDto {
+    string Username = 1;
+    string Name = 2;
+    string Password = 3;
+    string Email = 4;
+}
+
+message ProtoUser {
+    int32 UserID = 1;
+    string Username = 2;
+    string Name = 3;
+    string Email = 4;
+}

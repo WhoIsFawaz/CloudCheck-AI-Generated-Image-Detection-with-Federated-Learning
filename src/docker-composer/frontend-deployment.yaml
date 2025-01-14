@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: bloomingteratoma/frontend:latest
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: deployment-configmap
+            - secretRef:
+                name: deployment-secret
+          resources:
+            requests:
+              memory: "2Gi"  
+              cpu: "1"        
+            limits:
+              memory: "3Gi"   # Limit the federated learning
+              cpu: "2"        
+          ports:
+            - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

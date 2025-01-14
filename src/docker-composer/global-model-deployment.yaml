@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: global-model-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: global-model
+  template:
+    metadata:
+      labels:
+        app: global-model
+    spec:
+      containers:
+        - name: global-model
+          image: bloomingteratoma/global-model:latest
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: deployment-configmap
+            - secretRef:
+                name: deployment-secret
+          # resources:      
+          #   limits:
+          #     memory: "2Gi"
+          #     cpu: "1" 
+          ports:
+            - containerPort: 6001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: global-model-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: global-model
+  ports:
+    - port: 6001
+      targetPort: 6001
+      protocol: TCP

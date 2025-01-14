@@ -1,0 +1,5 @@
+# DOES NOT WORK ON ARM LINUX
+
+tensorflow==2.15.0
+tensorflowjs
+tensorflow_decision_forests==1.8.1

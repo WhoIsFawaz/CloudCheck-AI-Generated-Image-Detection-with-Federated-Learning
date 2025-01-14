@@ -1,0 +1,14 @@
+{
+  "name": "global-model-service",
+  "version": "1.0.0",
+  "description": "A global model sharing service using Node.js and Express",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "@tensorflow/tfjs-node": "^4.4.0",
+    "canvas": "^2.11.2"
+  }
+}
